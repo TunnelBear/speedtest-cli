@@ -1524,7 +1524,7 @@ class Speedtest(object):
         for size in self.config['sizes']['download']:
             for _ in range(0, self.config['counts']['download']):
                 urls.append('%s/random%sx%s.jpg' %
-                            (os.path.dirname(self.best['url']), size, size))
+                            ("http://tbspeedtest.s3.us-east-2.amazonaws.com", size, size))
 
         request_count = len(urls)
         requests = []
