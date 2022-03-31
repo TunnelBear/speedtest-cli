@@ -1086,9 +1086,11 @@ class SpeedtestResults(object):
 class Speedtest(object):
     """Class for performing standard speedtest.net testing operations"""
 
-    def __init__(self, config=None, source_address=None, timeout=10,
+    def __init__(self, aws_region, config=None, source_address=None, timeout=10,
                  secure=False, shutdown_event=None):
         self.config = {}
+
+        self.aws_region = aws_region
 
         self._source_address = source_address
         self._timeout = timeout
@@ -1524,7 +1526,7 @@ class Speedtest(object):
         for size in self.config['sizes']['download']:
             for _ in range(0, self.config['counts']['download']):
                 urls.append('%s/random%sx%s.jpg' %
-                            ("http://tbspeedtest.s3.us-east-2.amazonaws.com", size, size))
+                            ("http://tbspeedtest.s3." + self.aws_region + ".amazonaws.com", size, size))
 
         request_count = len(urls)
         requests = []
