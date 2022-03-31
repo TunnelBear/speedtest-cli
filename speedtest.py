@@ -1521,12 +1521,12 @@ class Speedtest(object):
         A ``threads`` value of ``None`` will fall back to those dictated
         by the speedtest.net configuration
         """
-
+        
+        base_url = "https://tbspeedtest-{}.s3.{}.amazonaws.com".format(self.aws_region, self.aws_region)
         urls = []
         for size in self.config['sizes']['download']:
             for _ in range(0, self.config['counts']['download']):
-                urls.append('%s/random%sx%s.jpg' %
-                            ("http://tbspeedtest.s3." + self.aws_region + ".amazonaws.com", size, size))
+                urls.append('%s/random%sx%s.jpg' % (base_url, size, size))
 
         request_count = len(urls)
         requests = []
