@@ -1528,6 +1528,7 @@ class Speedtest(object):
             for _ in range(0, self.config['counts']['download']):
                 urls.append('%s/random%sx%s.jpg' % (base_url, size, size))
 
+        print(urls)
         request_count = len(urls)
         requests = []
         for i, url in enumerate(urls):
